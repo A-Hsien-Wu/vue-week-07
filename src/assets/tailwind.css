@@ -1,0 +1,328 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+   @font-face {
+      font-family: 'Material Icons';
+      font-style: normal;
+      font-weight: 400;
+      src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+      src: local('Material Icons'),
+         local('MaterialIcons-Regular'),
+         url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+         url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+         url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+   }
+}
+
+@layer components {
+   .bg--vertical-line {
+      background-color: #161616;
+      opacity: 0.8;
+      background-size: 10px 10px;
+      background-image: repeating-linear-gradient(to right, #2d2d2d, #2d2d2d 0.5px, #161616 0.5px, #161616);
+   }
+   .bg--diagonal-line {
+      background-color: #161616;
+      /* opacity: 0.8; */
+      background: repeating-linear-gradient(-45deg, #2d2d2d, #2d2d2d 2px, #161616 2px, #161616 10px);
+   }
+   .container-center{
+      @apply container mx-auto py-4;
+   }
+  /** floating part **/
+   /* construction for floating
+      <label class="floating-label">
+         <input class="floating-input peer"/>
+         <span class="floating-assist"></span>
+      </label>
+  */
+   label.floating-label{
+      @apply block relative text-sm;
+   }
+   input.floating-input{
+      @apply w-full leading-8 border-b-2 focus:outline-none placeholder-transparent;
+   }
+   .floating-assist{
+      @apply text-gray-400  cursor-text
+      before:absolute
+      before:h-[1.5px]
+      before:transition-all 
+      before:duration-300
+      before:ease-in-out
+      before:bg-stone-300
+      before:w-full
+      before:bottom-0
+      before:right-0
+      peer-focus:before:w-full
+      peer-placeholder-shown:before:w-0
+      after:absolute 
+      after:content-['Email'] 
+      after:left-0 
+      after:-top-4 
+      peer-placeholder-shown:after:top-2
+      after:transition-all 
+      after:duration-500
+      after:ease-in-out
+      peer-focus:after:-top-4
+      peer-focus:text-sm
+      peer-focus:after:text-blue-500;
+   }
+  /** end of floating part **/
+
+   .warning-sentence{
+      @apply invisible peer-invalid:visible text-pink-600 text-xs hidden;
+   }
+   .btn-rounded-lg{
+      @apply py-2 px-4 text-white focus:ring-4 rounded-lg flex-none;
+   }
+   .btn-rounded-md{
+      @apply py-2 px-4 text-white focus:ring-4 rounded-md flex-none;
+   }
+   .btn-rounded-none{
+      @apply py-2 px-4 text-white focus:ring-4 rounded-none flex-none;
+   }
+   .btn-rounded-full{
+      @apply py-2 px-6 text-white focus:ring-4 rounded-full leading-6 font-medium flex-none;
+   }
+   .btn-twins-frame{
+      /* @apply p-1 px-4 inline-flex border transition-all duration-300 hover:px-6 peer-hover:px-2; */
+      @apply p-1 px-4 inline-flex border transition-all duration-300;
+   }
+   .btn-twins-frame-l{
+      @apply rounded-l-lg border-green-500 text-green-500 border-r-yellow-500
+      hover:bg-green-500 hover:text-white hover:border-r-green-500;
+   }
+   .btn-twins-frame-r{
+      @apply rounded-r-lg border-red-500 text-red-500 border-l-yellow-500
+      hover:bg-red-500 hover:text-white hover:border-l-red-500;
+   }
+   .btn-twins{
+      @apply p-1 px-4 inline-flex transition-all duration-300 text-sm;
+   }
+   .btn-twins-l{
+      @apply rounded-l-lg bg-amber-100 text-amber-500 
+      hover:bg-amber-500 hover:text-white;
+   }
+   .btn-twins-r{
+      @apply rounded-r-lg bg-red-100 text-red-500 
+      hover:bg-red-500 hover:text-white;
+   }
+   .btn-double{
+      @apply flex-none border-2 focus:outline-none focus:ring-4 focus:ring-opacity-50
+      hover:text-white sm:px-4 py-1 sm:-my-4 transition-all duration-300;
+   }
+   .btn-double-l{
+      @apply hover:bg-yellow-500 border-yellow-500 focus:ring-yellow-400
+      text-yellow-500 rounded-l-md border-r-orange-400;
+   }
+   .btn-double-r{
+      @apply hover:bg-red-500 border-red-500 focus:ring-red-400
+      text-red-500 rounded-r-md border-l-0;
+   }
+   .text-line-style-a{
+      @apply inline-block text-sm text-gray-500 hover:text-blue-500;
+   }
+
+   .modal-bottom-layer , .modal-layer{
+      @apply invisible fixed inset-0 w-full h-full z-20 bg-gray-500 bg-opacity-50 overflow-y-auto;
+   }
+   .modal__content{
+      @apply scale-0 w-full bg-white shadow-lg text-gray-900 z-20 rounded-t-lg py-6 pt-0;
+   }
+   .modal__content__header{
+      @apply flex justify-start gap-8 items-center px-6 border-b bg-gray-800 text-indigo-50 rounded-t-lg;
+   }
+   .modal-content{
+      @apply w-full mx-auto bg-white shadow-lg text-gray-900 z-20 p-6;
+   }
+   .container-centering{
+      @apply container-center flex md:m-auto;
+   }
+   .input-style{
+      @apply mt-1 px-3 py-3 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none 
+      focus:border-sky-100 focus:ring-sky-500/30 block w-full rounded-md 
+      sm:text-sm focus:ring-4 drop-shadow-sm focus:placeholder:invisible;
+   }
+   .input-style-structure{
+      @apply mt-1 px-3 py-3 border shadow-sm focus:outline-none block w-full rounded-md 
+      sm:text-sm focus:ring-4 drop-shadow-sm focus:placeholder:invisible;
+   }
+   .input-style--color{
+      @apply bg-white border-slate-300 placeholder-slate-400 focus:border-sky-100 focus:ring-sky-500/30;
+   }
+   .input-style--error{
+      @apply border-red-500/30 ring-red-500/30 border-2 !important;
+   }
+   .input-person-info{
+      @apply px-3 py-2 border shadow-sm focus:outline-none block w-full rounded-md 
+      sm:text-sm focus:ring-4 drop-shadow-sm focus:placeholder:invisible;
+   }
+   .error-text{
+      @apply text-red-500 text-sm inline-block;
+   }
+   .separate-line{
+      @apply w-full border-b-2 border-slate-200;
+   }
+  /** switcher **/
+   .switcher-label{
+      @apply flex flex-wrap items-center cursor-pointer relative;
+   }
+   .switcher-bg{
+      @apply relative border-2 h-6 w-11 flex-none rounded-full;
+   }
+   .switcher-bg--off{
+      @apply bg-gray-400 border-gray-200;
+   }
+   .switcher-bg:after {
+      content: '';
+      @apply absolute top-px left-[1.5px] bg-white border border-gray-300 rounded-full h-[24px] w-[24px] transition shadow-sm;
+   }
+   .switcher-text{
+      @apply text-gray-400;
+   }
+   input:checked + .switcher-bg:after {
+      transform: translateX(100%);
+      @apply border-white;
+   }
+   input:checked + .switcher-bg {
+      @apply bg-teal-600 border-teal-600;
+   }
+   input:checked ~ .switcher-text {
+      @apply text-teal-600;
+   }
+  /** end of switcher **/
+   .bg-no-photo{
+      background-color: #ffffff;
+      opacity: 0.8;
+      background-size: 13px 13px;
+      background-image: repeating-linear-gradient(45deg, #bebebe 0, #bebebe 1.3px, #ffffff 0, #ffffff 50%);
+      position: relative;
+   }
+   .bg-no-photo::before{
+      @apply absolute w-full h-full top-0 left-0 bg-contain bg-no-repeat bg-center opacity-30 content-[''] -z-10;
+      background-image: url('./images/add_photo_alternate_black_48dp.svg');
+   }
+   .upload-box{
+      @apply bg-neutral-100/70 rounded-lg p-4 aspect-[10/3] flex-auto max-w-full min-w-[50%];
+   }
+   .delete-upload::after{
+      @apply content-[''] absolute w-full h-full inset-0 bg-contain bg-no-repeat bg-center opacity-30;
+      background-image: url('./images/delete_white_24dp.svg');
+   }
+   .pagination-btn{
+      @apply h-10 px-5 text-indigo-600 transition-colors duration-150 
+      bg-white focus:shadow-indigo-500/40 hover:bg-indigo-50 disabled:hover:bg-white
+      disabled:text-gray-400;
+   }
+   .pagination-btn-mobile{
+      @apply hidden sm:inline-block;
+   }
+   .pagination-btn.active{
+      @apply text-white bg-indigo-600;
+   }
+   .list-header-col{
+      @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider flex items-center;
+   }
+   .bullet-text{
+      @apply px-2 inline-flex text-xs leading-5 font-semibold rounded-full;
+   }
+   .bullet-leaf{
+      @apply bg-green-100 text-green-500;
+   }
+   .bullet-danger{
+      @apply bg-rose-100 text-rose-500;
+   }
+   .order-summary-grid{
+      @apply grid grid-cols-[minmax(250px,_1fr)_200px_1fr];
+   }
+   .hover-spin-180{
+      @apply transition-all duration-500 ease-in-out origin-center hover:rotate-180;
+   }
+   .diagonal-cross{
+      @apply relative 
+         before:absolute 
+         before:content-[''] 
+         before:top-1/2 
+         before:left-0 
+         before:right-0 
+         before:rounded-lg
+         before:border-t-[3px] 
+         before:border-red-500 
+         before:origin-center 
+         before:rotate-[10deg]
+         before:opacity-80 
+         after:absolute 
+         after:content-[''] 
+         after:top-1/2 
+         after:left-0 
+         after:right-0 
+         after:rounded-lg
+         after:border-t-[2px] 
+         after:border-red-500 
+         after:origin-center 
+         after:rotate-[-10deg];
+   }
+   .nav-link{
+      @apply text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium;
+   }
+   /* .router-link-active 是 vue-router 的自動樣式，可以拿來套用 */
+   /* 或是在 index.js 裡面設定 createRouter({ linkActiveClass: 'nav-link-current' }); */
+   .nav-link-current, .nav-link.router-link-active{
+      @apply bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium;
+   }
+   .nav-hamburger-link{
+      @apply inline-flex items-center justify-center p-2 rounded-md text-gray-400
+         hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 
+         focus:ring-inset focus:ring-white;
+   }
+   .nav-link-admin{
+      @apply nav-link bg-violet-700 hover:bg-violet-500 flex-none;
+   }
+   .nav-link-admin.router-link-active{
+      @apply bg-violet-900 hover:bg-violet-900;
+   }
+}
+
+@layer utilities {
+   .fx-center{
+      @apply justify-center items-center;
+   }
+   .fx-center-y{
+      @apply flex items-center;
+   }
+   .fx-center-x{
+      @apply flex justify-center;
+   }
+   .hw-full{
+      @apply w-full h-full;
+   }
+   .bg-contain-center{
+      @apply bg-contain bg-no-repeat bg-center;
+   }
+   .icon-cover{
+      @apply object-cover aspect-auto inline-block; 
+   }
+   .divide-gray-200{
+      @apply my-4 border-b-2 border-gray-200;
+   }
+   .mobile-on{
+      @apply sm:hidden;
+   }
+   .mobile-off{
+      @apply hidden sm:block;
+   }
+   .filter-red{
+      filter: invert(14%) sepia(89%) saturate(7479%) hue-rotate(359deg) brightness(105%) contrast(107%);
+   }
+   .filter-blue-800{
+      filter: invert(21%) sepia(78%) saturate(2281%) hue-rotate(219deg) brightness(84%) contrast(94%);
+   }
+   .filter-green-500{
+      filter: invert(57%) sepia(49%) saturate(761%) hue-rotate(89deg) brightness(101%) contrast(80%);
+   }
+   .filter-white{
+      filter: invert(100%) sepia(0%) saturate(24%) hue-rotate(114deg) brightness(108%) contrast(108%);
+   }
+}
